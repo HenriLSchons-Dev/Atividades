@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Aluno
+ * @author Henri Lopes Schons
  */
 public class alarmeTemperatura {
     public static void main(String[] args){

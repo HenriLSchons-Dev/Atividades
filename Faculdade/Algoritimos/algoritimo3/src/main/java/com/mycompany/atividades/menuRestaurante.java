@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Aluno
+ * @author Henri Lopes Schons
  */
 public class menuRestaurante {
 
@@ -28,7 +28,7 @@ public class menuRestaurante {
             System.out.println("Tradicional da Casa: R$ 15");
         }
         else if(menu == 2){
-            System.out.println("Portuguesa R$ 50");;
+            System.out.println("Portuguesa R$ 50");
             System.out.println("Frango c/ Catupiry: R$ 45");
             System.out.println("4 queijos: R$ 65");
         }
