@@ -5,15 +5,18 @@ import java.util.Scanner;
 */
 public class inverterValores {
     public static void main(String[] args) {
-        int valor1 = 5;
-        int valor2 = 10;
+        double[] inverso = new double[5];
+        int i;
+        Scanner leia = new Scanner(System.in);
 
-        // Invertendo os valores
-        int temp = valor1;
-        valor1 = valor2;
-        valor2 = temp;
+        System.out.println("Digite 5 numeros: ");
+        for(i = 0; i < inverso.length; i++){
+            inverso[i] = leia.nextDouble();
+        }
 
-        System.out.println("Valor 1 após inversão: " + valor1);
-        System.out.println("Valor 2 após inversão: " + valor2);
+        System.out.println("Os numeros na ordem inversa digitada: ");
+        for(i = inverso.length - 1; i >= 0; i--){
+            System.out.println(inverso[i]);
+        }
     }
 }

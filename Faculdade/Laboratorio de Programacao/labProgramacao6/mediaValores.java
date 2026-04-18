@@ -5,8 +5,8 @@ import java.util.Scanner;
 */
 public class mediaValores {
     public static void main(String[] args) {
-        double[] num = new int[i];
-        double media;
+        double[] num = new double[5];
+        double media = 0;
         int i;
         Scanner leia = new Scanner(System.in);
 
@@ -15,6 +15,7 @@ public class mediaValores {
             num[i] = leia.nextDouble();
             media += num[i];
         }
+        
         System.out.println("A media dos numeros digitados é: " + media);
     }
 }

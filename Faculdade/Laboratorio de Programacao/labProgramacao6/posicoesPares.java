@@ -5,13 +5,17 @@ import java.util.Scanner;
 */
 public class posicoesPares {
     public static void main(String[] args) {
-        int[] numeros = {10, 20, 30, 40, 50, 60};
-        
-        System.out.println("Números nas posições pares:");
-        for (int i = 0; i < numeros.length; i++) {
-            if (i % 2 == 0) {
-                System.out.println(numeros[i]);
-            }
+        double[] num = new double[5];
+        int i;
+        Scanner leia = new Scanner(System.in);
+
+        System.out.println("Digite 5 valores: ");
+        for(i = 0; i < num.length; i++){
+            num[i] = leia.nextDouble();
+        }
+
+        for(i = 2; i < num.length; i += 2){
+            System.out.println("Os numeros armazenados nos indices pares do vetor sao: " + num[i]);
         }
     }
 }

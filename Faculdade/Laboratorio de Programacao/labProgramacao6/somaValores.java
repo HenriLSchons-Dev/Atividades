@@ -8,6 +8,7 @@ public class somaValores {
         int[] num = new int[5];
         int i, soma = 0;
         Scanner leia = new Scanner(System.in);
+        
         System.out.println("Digite 5 numeros: ");
         for(i = 0; i < num.length; i++){
             num[i] = leia.nextInt();

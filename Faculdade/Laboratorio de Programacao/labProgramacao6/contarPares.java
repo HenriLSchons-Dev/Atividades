@@ -5,15 +5,21 @@ import java.util.Scanner;
 */
 public class contarPares {
     public static void main(String[] args) {
-        int[] numeros = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        int contadorPares = 0;
+        int[] num = new int[5];
+        int i, contadorPares = 0;
+        Scanner leia = new Scanner(System.in);
 
-        for (int numero : numeros) {
-            if (numero % 2 == 0) {
+        System.out.println("Digite 5 numeros: ");
+        for(i = 0; i < num.length; i++){
+            num[i] = leia.nextInt();
+        }
+        
+        for(i = 0; i < num.length; i++){
+            if(num[i] % 2 == 0){
                 contadorPares++;
             }
         }
 
-        System.out.println("O número de pares é: " + contadorPares);
+        System.out.println("O número de pares inseridos é: " + contadorPares);
     }
 }

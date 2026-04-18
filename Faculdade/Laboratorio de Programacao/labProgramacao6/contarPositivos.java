@@ -5,15 +5,21 @@ import java.util.Scanner;
 */
 public class contarPositivos {
     public static void main(String[] args) {
-        int[] numeros = {1, -2, 3, 4, -5, 6};
-        int contadorPositivos = 0;
-
-        for (int numero : numeros) {
-            if (numero > 0) {
-                contadorPositivos++;
+        int[] num = new int[5];
+        int i, contaPositivos = 0;
+        Scanner leia = new Scanner(System.in);
+        
+        System.out.println("Digite 5 numeros: ");
+        for(i = 0; i < num.length; i++){
+            num[i] = leia.nextInt();
+        }
+        
+        for(i = 0; i < num.length; i++){
+            if(num[i] <= 0){
+                contaPositivos++;
             }
         }
 
-        System.out.println("Quantidade de números positivos: " + contadorPositivos);
+        System.out.println("Quantidade de números positivos: " + contaPositivos);
     }
 }
