@@ -1,6 +1,4 @@
-package com.mycompany.labprogramacao4;
 import java.util.Scanner;
-
 /**
  *
  * @author Henri Lopes Schons
