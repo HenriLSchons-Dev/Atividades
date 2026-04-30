@@ -16,7 +16,7 @@ public class desafioFinal{
         boolean valorEncontrado = false;
         Scanner leia = new Scanner(System.in);
 
-        System.out.println("Informe qual linha, e qual coluna deseja:");
+        System.out.println("Informe qual linha e qual coluna deseja:");
         linha = leia.nextInt();
         coluna = leia.nextInt();
 
@@ -26,12 +26,31 @@ public class desafioFinal{
 
                 if(linha == i && coluna == j){
                     valorEncontrado = true;
-                    System.out.println("O valor encontrado e: " + matriz[i][j]);
+                    System.out.println("O valor encontrado é: " + matriz[i][j]);
+
+                    if(i > 0){
+                        soma += matriz[i-1][j];
+                    }
+
+                    if(i < matriz.length - 1){
+                        soma += matriz[i+1][j];
+                    }
+
+                    if(j > 0){
+                        soma += matriz[i][j-1];
+                    }
+
+                    if(j < matriz[i].length - 1){
+                        soma += matriz[i][j+1];
+                    }
                 }
-
-                if(linha )
-
             }
+        }
+
+        if(valorEncontrado){
+            System.out.println("Soma dos vizinhos: " + soma);
+        } else {
+            System.out.println("Posição inválida!");
         }
     }
 }

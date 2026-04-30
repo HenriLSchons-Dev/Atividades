@@ -16,15 +16,15 @@ public class agendaSemanal{
         System.out.println("Qual posicao deseja alterar? posicao dada por = (i, j)");
         linha = leia.nextInt();
         coluna = leia.nextInt();
+        leia.nextLine();
 
         System.out.println("Oque deseja colocar no lugar?");
         for(i = 0; i < tarefas.length; i++){
 
             for(j = 0; j < tarefas[i].length; j++){
-                if(linha==i && coluna==j){
-                   tarefas[i][j] = leia.nextLine(); 
+                if(linha == i && coluna == j){
+                    tarefas[i][j] = leia.nextLine();
                 }
-                
             }
         }
 
@@ -32,7 +32,7 @@ public class agendaSemanal{
         for(i = 0; i < tarefas.length; i++){
 
             for(j = 0; j < tarefas[i].length; j++){
-                System.out.print(tarefas[i][j] + " ");
+                System.out.print(tarefas[i][j] + "; ");
             }
             System.out.println();
         }

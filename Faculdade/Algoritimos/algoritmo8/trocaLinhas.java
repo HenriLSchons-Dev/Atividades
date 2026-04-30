@@ -16,7 +16,7 @@ public class trocaLinhas{
         for(i = 0; i < troca.length; i++){
             
             for(j = 0; j < troca[i].length; j++){
-                System.out.println(troca[i][j] + " ");
+                System.out.print(troca[i][j] + " ");
             }
             System.out.println();
         }
