@@ -5,11 +5,11 @@
 public class perimetroDroneAgricola{
     public static void main(String[] args) {
         int[][] drone = {
-            {7, 19, 3, 25, 11},
-            {14, 0, 22, 8, 5},
-            {17, 9, 1, 24, 13},
-            {6, 20, 15, 2, 18},
-            {10, 4, 23, 12, 16}
+            {316, 374, 344},
+            {750, 499, 723},
+            {290, 484, 810},
+            {239, 411, 860},
+            {204, 126, 600}
         };
         int i, j, soma = 0;
 
@@ -21,6 +21,11 @@ public class perimetroDroneAgricola{
                 }
             }
         }
+
         System.out.println("A soma das laterais: " + soma);
+
+        if(soma > 122){
+            System.out.println("ALERTA DE EXCESSO!");
+        }
     }
 }

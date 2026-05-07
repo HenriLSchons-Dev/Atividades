@@ -30,9 +30,6 @@ public class estabilidadeEstrutural{
         if(determinante == 0){
             System.out.println("Necessita de revisao tecnica. Ass: Henri");
         }
-        else if(determinante < 3 && determinante > -3){
-            System.out.println("Risco estrutural!");
-        }
         else{
             System.out.println("Estrutura estavel");
         }
