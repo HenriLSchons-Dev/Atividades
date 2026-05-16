@@ -21,7 +21,7 @@ public class sistemEstoqueInteligente{
 
                 if(somaSemana < somaDiaria){
                     diaMaiorVenda = i;
-                    //as linhas (i) representam os dias e as colunas (j) a quantidade de determinado produto vendido
+                    //as linhas (i) representam os dias e as colunas (j) o produto vendido
                 }
                 
                 if(somaDiaria <= 50){
@@ -31,7 +31,7 @@ public class sistemEstoqueInteligente{
                 somaSemana = somaDiaria;
             }
             mediaDiaria = somaDiaria / 7;
-            System.out.println("A media diaria vendida foi: " + mediaDiaria);
+            System.out.println("A media do dia " + (i + 1) + "vendida foi: " + mediaDiaria);
         }
 
         System.out.println("O total vendido na semana foi: " + total);
