@@ -34,8 +34,6 @@ public class sistemVendaLoja{
                 maiorVenda = somaDiaria;
                 vendedor = i + 1;
             }
-
-            maiorVenda = somaDiaria;
         }
         media = total / 20;
 
