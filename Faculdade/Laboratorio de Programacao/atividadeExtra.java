@@ -7,8 +7,8 @@ import java.util.Scanner;
  */
 public class atividadeExtra{
     public static void main(String[] args){
-        double[][] notas = new double[5][1];
-        double[] mediaDosAlunos = new double[5];
+        double[][] notas = new double[50][10];
+        double[] mediaDosAlunos = new double[50];
         List<Integer> matricula = new ArrayList<>();
         double media = 0, mediaAluno, maior = 0, menor = 0;
         int i, j, aprovado = 0, recuperacao = 0, reprovado = 0;
@@ -18,7 +18,15 @@ public class atividadeExtra{
             mediaAluno = 0;
 
             for(j = 0; j < notas[i].length; j++){
-                notas[i][j] = leia.nextDouble();
+                do{
+                    notas[i][j] = leia.nextDouble();
+
+                    if(notas[i][j] < 0 || notas[i][j] > 10){
+                        System.out.println("Nota inválida! Digite uma nota real");
+                    }
+
+                }while(notas[i][j] < 0 || notas[i][j] > 10);
+
                 media += notas[i][j];
                 mediaAluno += notas[i][j];
 
@@ -58,7 +66,7 @@ public class atividadeExtra{
         media /= 500;
 
         for(i = 0; i < mediaDosAlunos.length; i++){
-
+            //considerando que o numero da matricula seja o numero do indice do aluno
             if(media < mediaDosAlunos[i]){
                 matricula.add(i);
             }
