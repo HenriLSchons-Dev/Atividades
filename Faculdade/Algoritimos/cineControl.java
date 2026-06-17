@@ -3,7 +3,7 @@ import java.util.Scanner;
  * 
  * @author Henri Lopes Schons e Joao Pedro Sapalacio
  */
-public class sistBilheteria{
+public class cineControl{
     public static void main(String[] args) {
         String[][] minecraft1 = {
             {"L","L","O","L","L","O","L","L"},
@@ -46,18 +46,35 @@ public class sistBilheteria{
         //obs: algumas funções usadas eu não conhecia, usei o site 'Stack Overflow' para pesquisar e entender sobre essas funcones que usei
 
         while(!sair){
-            System.out.println("Filmes em cartaz: ");
-            System.out.println("1 - Minecraft: o filme");
-            System.out.println("2 - Backrooms");
-            System.out.println("Digite o numero de qual filme deseja ver");
-            filmeEscolha = leia.nextInt();
+            //exibe os filmes em cartaz e o usuario escolhe qual deseja
+            do{
+                System.out.println("Filmes em cartaz:");
+                System.out.println("1 - Minecraft: o filme");
+                System.out.println("2 - Backrooms");
+                System.out.println("Digite o numero do filme desejado:");
+                filmeEscolha = leia.nextInt();
+
+                if(filmeEscolha < 1 || filmeEscolha > 2){
+                    System.out.println("Filme invalido! Tente novamente.");
+                }
+
+            }while(filmeEscolha < 1 || filmeEscolha > 2);
 
             switch (filmeEscolha){
                 case 1 -> {
-                    System.out.println("Sessoes disponiveis hoje: ");
-                    System.out.println("1 - sessao as 14:20");
-                    System.out.println("2 _ sessao as 16:50");
-                    sessao = leia.nextInt();
+                    //exibe as sessoes disponiveis para o filme e o usuario escolhe qual sessao deseja ver
+                    do{
+                        System.out.println("Sessoes disponiveis hoje:");
+                        System.out.println("1 - sessao as 14:20");
+                        System.out.println("2 - sessao as 16:50");
+
+                        sessao = leia.nextInt();
+
+                        if(sessao < 1 || sessao > 2){
+                            System.out.println("Sessao invalida! Tente novamente.");
+                        }
+
+                    }while(sessao < 1 || sessao > 2);
 
                     switch(sessao){
                         case 1 ->{
@@ -95,49 +112,50 @@ public class sistBilheteria{
 
                                 // Verifica disponibilidade
                                 if(minecraft1[linha][coluna].equals("L")){
-                                    System.out.println("Tipo do ingresso:");
-                                    System.out.println("1 - Inteira (R$30,00)");
-                                    System.out.println("2 - Meia (R$15,00)");
+                                    do{
+                                        System.out.println("Tipo do ingresso:");
+                                        System.out.println("1 - Inteira (R$30,00)");
+                                        System.out.println("2 - Meia (R$15,00)");
 
-                                    tipoIngresso = leia.nextInt();
-                                    
-                                    boolean ingressoValido = false;
+                                        tipoIngresso = leia.nextInt();
+
+                                        if(tipoIngresso < 1 || tipoIngresso > 2){
+                                            System.out.println("Tipo de ingresso invalido!");
+                                        }
+
+                                    }while(tipoIngresso < 1 || tipoIngresso > 2);
 
                                     switch(tipoIngresso){
                                         case 1 ->{
                                             valorCompra += 30;
                                             totalSala1 += 30;
-                                            ingressoValido = true;
                                             System.out.println("Ingresso inteira adicionada.");
                                         }
                                         case 2 ->{
                                             valorCompra += 15;
                                             totalSala1 += 15;
-                                            ingressoValido = true;
                                             System.out.println("Ingresso meia adicionada.");
                                         }
                                         default -> System.out.println("Tipo de ingresso invalido!");
                                     }
 
-                                    if(ingressoValido){
+                                    System.out.println("Assento reservado com sucesso!");
 
-                                        System.out.println("Assento reservado com sucesso!");
+                                    // Armazena no vetor
+                                    assentosEscolhidos[quantosAssentos] = letraEscolhida + numeroEscolhido;
+                                    quantosAssentos++;
 
-                                        // Armazena no vetor
-                                        assentosEscolhidos[quantosAssentos] = letraEscolhida + numeroEscolhido;
-                                        quantosAssentos++;
+                                    // Marca como ocupado
+                                    minecraft1[linha][coluna] = "O";
 
-                                        // Marca como ocupado
-                                        minecraft1[linha][coluna] = "O";
-
-                                        System.out.println("Assentos escolhidos:");
-                                        for(k = 0; k < quantosAssentos; k++){
-                                            System.out.println(assentosEscolhidos[k]);
-                                        }
-
-                                        System.out.println("Assento " + letraEscolhida + numeroEscolhido + " reservado com sucesso!");
-                                        System.out.println("Valor total da compra: R$" + valorCompra);
+                                    System.out.println("Assentos escolhidos:");
+                                    for(k = 0; k < quantosAssentos; k++){
+                                        System.out.println(assentosEscolhidos[k]);
                                     }
+
+                                    System.out.println("Assento " + letraEscolhida + numeroEscolhido + " reservado com sucesso!");
+                                    System.out.println("Valor total da compra: R$" + valorCompra);
+                                    
 
                                 }else{
                                     System.out.println("Assento ocupado!");
@@ -210,48 +228,49 @@ public class sistBilheteria{
 
                                 // Verifica disponibilidade
                                 if(minecraft2[linha][coluna].equals("L")){
-                                    System.out.println("Tipo do ingresso:");
-                                    System.out.println("1 - Inteira (R$30,00)");
-                                    System.out.println("2 - Meia (R$15,00)");
+                                    do{
+                                        System.out.println("Tipo do ingresso:");
+                                        System.out.println("1 - Inteira (R$30,00)");
+                                        System.out.println("2 - Meia (R$15,00)");
 
-                                    tipoIngresso = leia.nextInt();
-                                    boolean ingressoValido = false;
+                                        tipoIngresso = leia.nextInt();
+
+                                        if(tipoIngresso < 1 || tipoIngresso > 2){
+                                            System.out.println("Tipo de ingresso invalido!");
+                                        }
+
+                                    }while(tipoIngresso < 1 || tipoIngresso > 2);
                                     
                                     switch(tipoIngresso){
                                         case 1 ->{
                                             valorCompra += 30;
                                             totalSala2 += 30;
-                                            ingressoValido = true;
                                             System.out.println("Ingresso inteira adicionada.");
                                         }
                                         case 2 ->{
                                             valorCompra += 15;
                                             totalSala2 += 15;
-                                            ingressoValido = true;
                                             System.out.println("Ingresso meia adicionada.");
                                         }
                                         default -> System.out.println("Tipo de ingresso invalido!");
                                     }
 
-                                    if(ingressoValido){
+                                    System.out.println("Assento reservado com sucesso!");
 
-                                        System.out.println("Assento reservado com sucesso!");
+                                    // Armazena no vetor
+                                    assentosEscolhidos[quantosAssentos] = letraEscolhida + numeroEscolhido;
+                                    quantosAssentos++;
 
-                                        // Armazena no vetor
-                                        assentosEscolhidos[quantosAssentos] = letraEscolhida + numeroEscolhido;
-                                        quantosAssentos++;
+                                    // Marca como ocupado
+                                    minecraft2[linha][coluna] = "O";
 
-                                        // Marca como ocupado
-                                        minecraft2[linha][coluna] = "O";
-
-                                        System.out.println("Assentos escolhidos:");
-                                        for(k = 0; k < quantosAssentos; k++){
-                                            System.out.println(assentosEscolhidos[k]);
-                                        }
-
-                                        System.out.println("Assento " + letraEscolhida + numeroEscolhido + " reservado com sucesso!");
-                                        System.out.println("Valor total da compra: R$" + valorCompra);
+                                    System.out.println("Assentos escolhidos:");
+                                    for(k = 0; k < quantosAssentos; k++){
+                                        System.out.println(assentosEscolhidos[k]);
                                     }
+
+                                    System.out.println("Assento " + letraEscolhida + numeroEscolhido + " reservado com sucesso!");
+                                    System.out.println("Valor total da compra: R$" + valorCompra);
 
                                 }else{
                                     System.out.println("Assento ocupado!");
@@ -327,48 +346,49 @@ public class sistBilheteria{
 
                         // Verifica disponibilidade
                         if(backrooms[linha][coluna].equals("L")){
-                            System.out.println("Tipo do ingresso:");
-                            System.out.println("1 - Inteira (R$30,00)");
-                            System.out.println("2 - Meia (R$15,00)");
+                            do{
+                                System.out.println("Tipo do ingresso:");
+                                System.out.println("1 - Inteira (R$30,00)");
+                                System.out.println("2 - Meia (R$15,00)");
 
-                            tipoIngresso = leia.nextInt();
-                            boolean ingressoValido = false;
+                                tipoIngresso = leia.nextInt();
+
+                                if(tipoIngresso < 1 || tipoIngresso > 2){
+                                    System.out.println("Tipo de ingresso invalido!");
+                                }
+
+                            }while(tipoIngresso < 1 || tipoIngresso > 2);
                             
                             switch(tipoIngresso){
                                 case 1 ->{
                                     valorCompra += 30;
                                     totalSala3 += 30;
-                                    ingressoValido = true;
                                     System.out.println("Ingresso inteira adicionada.");
                                 }
                                 case 2 ->{
                                     valorCompra += 15;
                                     totalSala3 += 15;
-                                    ingressoValido = true;
                                     System.out.println("Ingresso meia adicionada.");
                                 }
                                 default -> System.out.println("Tipo de ingresso invalido!");
                             }
 
-                            if(ingressoValido){
+                            System.out.println("Assento reservado com sucesso!");
 
-                                System.out.println("Assento reservado com sucesso!");
+                            // Armazena no vetor
+                            assentosEscolhidos[quantosAssentos] = letraEscolhida + numeroEscolhido;
+                            quantosAssentos++;
 
-                                // Armazena no vetor
-                                assentosEscolhidos[quantosAssentos] = letraEscolhida + numeroEscolhido;
-                                quantosAssentos++;
+                            // Marca como ocupado
+                            backrooms[linha][coluna] = "O";
 
-                                // Marca como ocupado
-                                backrooms[linha][coluna] = "O";
-
-                                System.out.println("Assentos escolhidos:");
-                                for(k = 0; k < quantosAssentos; k++){
-                                    System.out.println(assentosEscolhidos[k]);
-                                }
-
-                                System.out.println("Assento " + letraEscolhida + numeroEscolhido + " reservado com sucesso!");
-                                System.out.println("Valor total da compra: R$" + valorCompra);
+                            System.out.println("Assentos escolhidos:");
+                            for(k = 0; k < quantosAssentos; k++){
+                                System.out.println(assentosEscolhidos[k]);
                             }
+
+                            System.out.println("Assento " + letraEscolhida + numeroEscolhido + " reservado com sucesso!");
+                            System.out.println("Valor total da compra: R$" + valorCompra);
 
                         }else{
                             System.out.println("Assento ocupado!");
