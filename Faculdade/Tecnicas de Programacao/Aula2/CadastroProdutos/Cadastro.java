@@ -22,6 +22,7 @@ public class Cadastro {
 
             switch (menu) {
                 case 0:
+                    System.out.println("Encerrando programa...");
                     break;
 
                 case 1:
@@ -54,9 +55,7 @@ public class Cadastro {
                     System.out.println("Produtos armazenados: ");
 
                     for (int i = 0; i < 10; i++) {
-
                         if (produtos[i] != null) {
-
                             System.out.println("\nPosicao: " + i);
                             System.out.println("Nome: " + produtos[i].getNome());
                             System.out.println("Preco: R$ " + produtos[i].getPreco());

@@ -19,7 +19,9 @@ public class Cadastro{
 
             switch (menu){
                 case 0:
+                    System.out.println("Encerrando programa...");
                     break;
+
                 case 1:
                     System.out.println("Bem vindo ao cadastro do cliente!");
                     System.out.println("");
@@ -37,10 +39,12 @@ public class Cadastro{
                     m = leia.nextLine();
                     c1.setCpf(m);
                     break;
+
                 case 2:
                     System.out.println("Dados do cliente cadastrado: ");
                     c1.statusCliente();
                     break;
+
                 case 3:
                     System.out.println("Qual dado quer alterar do cliente?");
                     System.out.println("1 - Nome");
@@ -55,12 +59,14 @@ public class Cadastro{
                             n = leia.nextLine();
                             c1.setNome(n);
                             break;
+
                         case 2:
                             System.out.println("Informe a nova idade do cliente: ");
                             i = leia.nextInt();
                             c1.setIdade(i);
                             leia.nextLine();
                             break;
+
                         case 3:
                             System.out.println("Informe o novo cpf do cliente: ");
                             m = leia.nextLine();
@@ -69,8 +75,7 @@ public class Cadastro{
                     }
                 default:
                     System.out.println("Erro: Digite um numero valido");
-            }  
+            }
         } while (menu != 0);
-        System.out.println("Sistema encerrado!");
     }
 }

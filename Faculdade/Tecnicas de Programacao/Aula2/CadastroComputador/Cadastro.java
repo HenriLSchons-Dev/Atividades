@@ -20,7 +20,9 @@ public class Cadastro{
 
             switch(menu){
                 case 0:
+                    System.out.println("Encerrando programa...");
                     break;
+
                 case 1:
                     System.out.println("Informe a CPU do computador: ");
                     c = leia.nextLine();
@@ -66,17 +68,20 @@ public class Cadastro{
                             g = leia.nextLine();
                             c1.setGpu(g);
                             break;
+
                         case 3:
                             System.out.println("Informe qual o SO atual: ");
                             s = leia.nextLine();
                             c1.setSistema(s);
                             break;
+
                         case 4:
                             System.out.println("Informe qual o estado da maquina: ");
                             m = leia.nextBoolean();
                             c1.setManutencao(m);
                             leia.nextLine();
                             break;
+                            
                         default:
                             System.out.println("Erro: Digite um numero valido!");
                     }
