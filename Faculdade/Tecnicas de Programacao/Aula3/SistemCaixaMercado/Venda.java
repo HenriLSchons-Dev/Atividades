@@ -1,138 +1,145 @@
 import java.util.Scanner;
-public class Venda{
-    public static void main(String[] agrs){
+public class Venda {
+    public static void main(String[] args) {
         Scanner leia = new Scanner(System.in);
         Produto[] estoque = new Produto[5];
         estoque[0] = new Produto(101, "Arroz", 6.99, 9, "cesta basica");
         estoque[1] = new Produto(102, "Feijao", 7.99, 8, "cesta basica");
         estoque[2] = new Produto(302, "Detergente", 9.99, 11, "produto de limpeza");
         estoque[3] = new Produto(509, "Doritos", 8.99, 21, "outro");
-        estoque[4] = new Produto(607, "RedBull", 12.50, 6, "Bebida");
+        estoque[4] = new Produto(607, "RedBull", 12.50, 6, "bebida");
 
-        Produto[] carrinho = new Produto[5];
-
-        double impostosTotais;
-        double subTotal;
+        Produto[] carrinho = new Produto[20];
+        int[] quantidadeCarrinho = new int[20];
+        
+        int idEscolhido;
+        int posicaoProduto = -1;
+        int itensCarrinho = 0;
+        int opcao;
         double valorPago;
-        int id;
-        String nomeProduto;
-        double preco;
-        int emEstoque;
-        String categ;
-        int posicao;
-        int menu;
 
         do {
-            System.out.println("-------------MENU---------------");
-            System.out.println("1 - Cadastrar produto");
-            System.out.println("2 - Listar carrinho");
-            System.out.println("3 - Emitir cupom fiscal");
+            System.out.println("\n===== FRENTE DE CAIXA =====");
+            System.out.println("1 - Ver produtos");
+            System.out.println("2 - Adicionar produto ao carrinho");
+            System.out.println("3 - Finalizar compra");
             System.out.println("0 - Sair");
-            System.out.println("--------------------------------");
-            menu = leia.nextInt();
-            leia.nextLine();
+            System.out.println("==============================");
 
-            switch (menu) {
-                case 0:
-                    System.out.println("Encerrando programa...");
-                    break;
+            System.out.print("Escolha uma opção: ");
+            opcao = leia.nextInt();
+
+            switch (opcao) {
 
                 case 1:
-                    System.out.println("Informe a posição do produto (0 a 19): ");
-                    posicao = leia.nextInt();
-                    leia.nextLine();
 
-                    if (posicao >= 0 && posicao < 20) {
-                        System.out.println("Informe o codigo do produto: ");
-                        id = leia.nextInt();
-                        leia.nextLine();
+                    System.out.println("\n===== PRODUTOS DISPONÍVEIS =====");
 
-                        System.out.println("Informe o nome do produto: ");
-                        nomeProduto = leia.nextLine();
-
-                        System.out.println("Informe o preço do produto: ");
-                        preco = leia.nextDouble();
-                        leia.nextLine();
-
-                        System.out.println("Informe a quantidade em estoque do produto: ");
-                        emEstoque = leia.nextInt();
-                        leia.nextLine();
-
-                        System.out.println("Informe a categoria desse produto: ");
-                        categ = leia.nextLine();
-
-                        estoque[posicao] = new Produto(id, nomeProduto, preco, emEstoque, categ);
-
-                        System.out.println("Produto cadastrado com sucesso!");
-
-                    } else {
-                        System.out.println("Erro: Digite uma posição válida!");
+                    for (int i = 0; i < estoque.length; i++) {
+                        System.out.println("\nCódigo: " + estoque[i].getCodigo());
+                        System.out.println("Nome: " + estoque[i].getNome());
+                        System.out.println("Preço: R$ " + estoque[i].getPreco());
+                        System.out.println("Estoque: " + estoque[i].getEstoque());
+                        System.out.println("Categoria: " + estoque[i].getCategoria());
                     }
+
                     break;
 
-                case 2:
-                    System.out.println("Produtos no carrinho: ");
 
-                    for (int i = 0; i < 20; i++) {
-                        if (carrinho[i] != null) {
-                            System.out.println("\nPosicao: " + i);
-                            System.out.println("ID #" + carrinho[i].getCodigo());
-                            System.out.println("Nome: " + carrinho[i].getNome());
-                            System.out.println("Preco: R$ " + carrinho[i].getPreco());
-                            System.out.println("Quantidade: " + carrinho[i].getEstoque());
-                            System.out.println("Categoria: " + carrinho[i].getCategoria());
+                case 2:
+
+                    System.out.print("Digite o código do produto desejado: ");
+                    idEscolhido = leia.nextInt();
+
+                    posicaoProduto = 0;
+
+                    for (int i = 0; i < estoque.length; i++) {
+
+                        if (estoque[i].getCodigo() == idEscolhido) {
+                            posicaoProduto = i;
+                            break;
+                        }
+                    }
+
+                    if (posicaoProduto == -1) {
+                        System.out.println("Produto não encontrado!");
+
+                    } else {
+                        System.out.print("Digite a quantidade desejada: ");
+                        int quantidade = leia.nextInt();
+
+                        if (estoque[posicaoProduto].darBaixa(quantidade)) {
+
+                            carrinho[itensCarrinho] = estoque[posicaoProduto];
+
+                            quantidadeCarrinho[itensCarrinho] = quantidade;
+
+                            itensCarrinho++;
+
+                            System.out.println("Produto adicionado ao carrinho!");
+
+                        } else {
+
+                            System.out.println("Estoque insuficiente!");
                         }
                     }
                     break;
 
                 case 3:
-                    System.out.println("Informe a posição do produto que deseja alterar (0 a 9): ");
-                    posicao = leia.nextInt();
-                    leia.nextLine();
 
-                    if (posicao >= 0 && posicao <= 9 && carrinho[posicao] != null) {
-                        System.out.println("Qual informação deseja alterar?");
-                        System.out.println("1 - Nome");
-                        System.out.println("2 - Preço");
-                        System.out.println("3 - Quantidade");
-                        alt = leia.nextInt();
-                        leia.nextLine();
+                    if (itensCarrinho == 0) {
+                        System.out.println("O carrinho está vazio!");
+                        break;
+                    }
 
-                        switch (alt) {
-                            case 1:
-                                System.out.println("Informe o novo nomeProduto: ");
-                                nomeProduto = leia.nextLine();
+                    double subtotal = 0;
+                    double impostosTotais = 0;
+                    
+                    System.out.println("\n==========================================");
+                    System.out.println("CUPOM FISCAL - SUPERMERCADO");
+                    System.out.println("==========================================");
+                    System.out.println("Item | Nome | Qtd | Pr.Unit | Total");
+                    System.out.println("------------------------------------------");
 
-                                carrinho[posicao].setNome(nomeProduto);
-                                break;
+                    for (int i = 0; i < itensCarrinho; i++) {
+                        double totalItem =  carrinho[i].getPreco() * quantidadeCarrinho[i];
+                        double impostoItem = carrinho[i].calcularImposto() * quantidadeCarrinho[i];
 
-                            case 2:
-                                System.out.println("Informe o novo preço: ");
-                                preco = leia.nextDouble();
-                                leia.nextLine();
+                        subtotal += totalItem;
 
-                                carrinho[posicao].setPreco(preco);
-                                break;
+                        impostosTotais += impostoItem;
 
-                            case 3:
-                                System.out.println("Informe a nova quantidade: ");
-                                quantidade = leia.nextInt();
-                                leia.nextLine();
+                        System.out.println( (i + 1) + " | " + carrinho[i].getNome() + " | " + quantidadeCarrinho[i] + " | R$ " + carrinho[i].getPreco() + " | R$ " + totalItem);
+                    }
 
-                                carrinho[posicao].setQuantidade(quantidade);
-                                break;
+                    System.out.println("------------------------------------------");
+                    System.out.println("SUBTOTAL: R$" + subtotal);
+                    System.out.println("TOTAL DE IMPOSTOS: R$" + impostosTotais);
+                    System.out.println("TOTAL A PAGAR: R$" + subtotal);
+                    System.out.println("Digite o valor recebido: R$ ");
+                    valorPago = leia.nextDouble();
 
-                            default:
-                                System.out.println("Erro: Digite uma opção válida!");
-                        }
+                    if (valorPago < subtotal) {
+                        System.out.println(
+                                "Saldo insuficiente!"
+                        );
+
                     } else {
-                        System.out.println("Produto não encontrado!");
+                        double troco = valorPago - subtotal;
+                        System.out.printf(
+                                "TROCO: R$" + troco);
                     }
                     break;
 
+                case 0:
+                    System.out.println("Sistema encerrado.");
+                    break;
+
                 default:
-                    System.out.println("Erro: Digite uma opção válida!");
+                    System.out.println(
+                            "Opção inválida!"
+                    );
             }
-        } while (menu != 0);
+        } while (opcao != 0);
     }
 }

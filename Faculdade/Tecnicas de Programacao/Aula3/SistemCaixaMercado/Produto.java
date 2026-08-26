@@ -3,14 +3,14 @@ public class Produto{
     private String nome;
     private double precoUnitario;
     private int qntEmEstoque;
-    private String Categoria;
+    private String categoria;
 
     public Produto(int id, String nomeProduto, double preco, int emEstoque, String categ){
         this.codigo = id;
         this.nome = nomeProduto;
-        this.precoUnitario = preco;
-        this.qntEmEstoque = emEstoque;
-        this.Categoria = categ;
+        setPreco(preco);
+        setEstoque(emEstoque);
+        this.categoria = categ;
     }
 
     public void setCodigo(int id){
@@ -54,26 +54,37 @@ public class Produto{
     }
 
     public void setCategoria(String categ){
-        this.Categoria = categ;
+        this.categoria = categ;
     }
 
     public String getCategoria(){
-        return this.Categoria;
+        return this.categoria;
     }
 
-    public void darBaixa(int qnt){
-        if(qnt > qntEmEstoque){
+    public boolean darBaixa(int qnt){
+        if(qnt > qntEmEstoque || qnt <= 0){
             System.out.println("Operação recusada!");
+            return false;
         } else{
-            this.qntEmEstoque =+ qnt;
+            this.qntEmEstoque -= qnt;
+            return true;
         }
     }
 
-    public void status(){
-        System.out.println(".()");
-        System.out.println(".()");
-        System.out.println(".()");
-        System.out.println(".()");
-        System.out.println(".()");
+    public double calcularImposto() {
+        String categoriaFormatada = categoria.toLowerCase();
+
+        if (categoriaFormatada.equals("cesta basica") || categoriaFormatada.equals("cesta básica")) {
+            return precoUnitario * 0.07;
+
+        } else if (categoriaFormatada.equals("produto de limpeza")) {
+            return precoUnitario * 0.12;
+
+        } else if (categoriaFormatada.equals("bebida")) {
+            return precoUnitario * 0.18;
+
+        } else {
+            return precoUnitario * 0.15;
+        }
     }
 }
