@@ -1,21 +1,34 @@
 import java.util.Scanner;
-public class Cadastro {
-    public static void main(String[] args) {
+public class Venda{
+    public static void main(String[] agrs){
         Scanner leia = new Scanner(System.in);
-        Produto[] produtos = new Produto[10];
+        Produto[] estoque = new Produto[5];
+        estoque[0] = new Produto(101, "Arroz", 6.99, 9, "cesta basica");
+        estoque[1] = new Produto(102, "Feijao", 7.99, 8, "cesta basica");
+        estoque[2] = new Produto(302, "Detergente", 9.99, 11, "produto de limpeza");
+        estoque[3] = new Produto(509, "Doritos", 8.99, 21, "outro");
+        estoque[4] = new Produto(607, "RedBull", 12.50, 6, "Bebida");
 
-        String nome;
+        Produto[] carrinho = new Produto[5];
+
+        double impostosTotais;
+        double subTotal;
+        double valorPago;
+        int id;
+        String nomeProduto;
         double preco;
-        int quantidade;
-        int menu, alt, posicao;
+        int emEstoque;
+        String categ;
+        int posicao;
+        int menu;
 
         do {
             System.out.println("-------------MENU---------------");
             System.out.println("1 - Cadastrar produto");
-            System.out.println("2 - Listar produtos");
-            System.out.println("3 - Alterar uma informação de um produto");
+            System.out.println("2 - Listar carrinho");
+            System.out.println("3 - Emitir cupom fiscal");
             System.out.println("0 - Sair");
-            System.out.println("================================");
+            System.out.println("--------------------------------");
             menu = leia.nextInt();
             leia.nextLine();
 
@@ -25,23 +38,30 @@ public class Cadastro {
                     break;
 
                 case 1:
-                    System.out.println("Informe a posição do produto (0 a 9): ");
+                    System.out.println("Informe a posição do produto (0 a 19): ");
                     posicao = leia.nextInt();
                     leia.nextLine();
 
-                    if (posicao >= 0 && posicao < 10) {
+                    if (posicao >= 0 && posicao < 20) {
+                        System.out.println("Informe o codigo do produto: ");
+                        id = leia.nextInt();
+                        leia.nextLine();
 
                         System.out.println("Informe o nome do produto: ");
-                        nome = leia.nextLine();
+                        nomeProduto = leia.nextLine();
 
                         System.out.println("Informe o preço do produto: ");
                         preco = leia.nextDouble();
-
-                        System.out.println("Informe a quantidade em estoque do produto: ");
-                        quantidade = leia.nextInt();
                         leia.nextLine();
 
-                        produtos[posicao] = new Produto(nome, preco, quantidade);
+                        System.out.println("Informe a quantidade em estoque do produto: ");
+                        emEstoque = leia.nextInt();
+                        leia.nextLine();
+
+                        System.out.println("Informe a categoria desse produto: ");
+                        categ = leia.nextLine();
+
+                        estoque[posicao] = new Produto(id, nomeProduto, preco, emEstoque, categ);
 
                         System.out.println("Produto cadastrado com sucesso!");
 
@@ -51,14 +71,16 @@ public class Cadastro {
                     break;
 
                 case 2:
-                    System.out.println("Produtos armazenados: ");
+                    System.out.println("Produtos no carrinho: ");
 
-                    for (int i = 0; i < 10; i++) {
-                        if (produtos[i] != null) {
+                    for (int i = 0; i < 20; i++) {
+                        if (carrinho[i] != null) {
                             System.out.println("\nPosicao: " + i);
-                            System.out.println("Nome: " + produtos[i].getNome());
-                            System.out.println("Preco: R$ " + produtos[i].getPreco());
-                            System.out.println("Quantidade: " + produtos[i].getQuantidade());
+                            System.out.println("ID #" + carrinho[i].getCodigo());
+                            System.out.println("Nome: " + carrinho[i].getNome());
+                            System.out.println("Preco: R$ " + carrinho[i].getPreco());
+                            System.out.println("Quantidade: " + carrinho[i].getEstoque());
+                            System.out.println("Categoria: " + carrinho[i].getCategoria());
                         }
                     }
                     break;
@@ -68,7 +90,7 @@ public class Cadastro {
                     posicao = leia.nextInt();
                     leia.nextLine();
 
-                    if (posicao >= 0 && posicao <= 9 && produtos[posicao] != null) {
+                    if (posicao >= 0 && posicao <= 9 && carrinho[posicao] != null) {
                         System.out.println("Qual informação deseja alterar?");
                         System.out.println("1 - Nome");
                         System.out.println("2 - Preço");
@@ -78,10 +100,10 @@ public class Cadastro {
 
                         switch (alt) {
                             case 1:
-                                System.out.println("Informe o novo nome: ");
-                                nome = leia.nextLine();
+                                System.out.println("Informe o novo nomeProduto: ");
+                                nomeProduto = leia.nextLine();
 
-                                produtos[posicao].setNome(nome);
+                                carrinho[posicao].setNome(nomeProduto);
                                 break;
 
                             case 2:
@@ -89,7 +111,7 @@ public class Cadastro {
                                 preco = leia.nextDouble();
                                 leia.nextLine();
 
-                                produtos[posicao].setPreco(preco);
+                                carrinho[posicao].setPreco(preco);
                                 break;
 
                             case 3:
@@ -97,7 +119,7 @@ public class Cadastro {
                                 quantidade = leia.nextInt();
                                 leia.nextLine();
 
-                                produtos[posicao].setQuantidade(quantidade);
+                                carrinho[posicao].setQuantidade(quantidade);
                                 break;
 
                             default:
