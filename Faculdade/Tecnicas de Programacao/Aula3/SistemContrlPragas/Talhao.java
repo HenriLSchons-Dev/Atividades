@@ -27,7 +27,7 @@ public class Talhao{
         return this.cultura;
     }
 
-    public void setAreaHectare(double areaHectares){
+    public void setAreaHectares(double areaHectares){
         this.areaHectares = areaHectares;
     }
 

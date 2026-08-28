@@ -1,10 +1,11 @@
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 public class OrdemDeAplicacao{
     public static void main(String[] args){
         Scanner leia = new Scanner(System.in);
         List<Talhao> talhoes = new ArrayList<>();
+        List<Defensivo> defensivos = new ArrayList<>();
 
         int idTalhao;
         String cultura;
@@ -16,7 +17,6 @@ public class OrdemDeAplicacao{
         double precoPorLitro;
         double estoqueLitros;
         double porcentagemEficacia;
-        double area = areaHectares;
 
         if(talhoes.isEmpty()){
             int menu;
@@ -50,12 +50,14 @@ public class OrdemDeAplicacao{
                 System.out.println("0 - encerrar cadastro de talhoes");
                 System.out.println("====================================");
                 menu = leia.nextInt();
+                leia.nextLine();
+                
             } while (menu != 0);
         }
 
         System.out.println(" ");
 
-        for(Talhao Talhao : talhoes){
+        for(Talhao talhao : talhoes){
             System.out.println("===============================================");
             System.out.println("Informe o nome do defensivo utilisado: ");
             nome = leia.nextLine();
@@ -83,9 +85,30 @@ public class OrdemDeAplicacao{
             porcentagemEficacia = leia.nextDouble();
             leia.nextLine();
 
+            Defensivo defensivo = new Defensivo(nome, tipoPragaAlvo, dosagemPorHectare, precoPorLitro, estoqueLitros, porcentagemEficacia);
+            defensivos.add(defensivo);
+
             System.out.println("===================================================");
 
-            aplicar();
+            defensivo.aplicar(talhao.getAreaHectares());
+            defensivo.reduzirPraga(talhao.getNivelInfestacao());
+
+            System.out.println("========================================================");
+            System.out.println("         RELATORIO DE APLICACAO DE DEFENSIVOS           ");
+            System.out.println("========================================================");
+            System.out.printf(" Talhao ID:                       %d  (Cultura: %s).%n", talhao.getIdTalhao(), talhao.getCultura());
+            System.out.printf(" Area tratada:                    %.1f Hectares.%n", talhao.getAreaHectares());
+            System.out.printf(" Defensivo utilisado:             %s X (%s).%n", defensivo.getNome(), defensivo.getTipoPragaAlvo());
+            System.out.printf(" Dosagem aplicada:                %.1f Litros total.%n", defensivo.litrosTotais(talhao.getAreaHectares()));
+            System.out.println("--------------------------------------------------------");
+            System.out.printf(" Infestacao anterior:             %.1f.%n", talhao.getNivelInfestacao());
+            System.out.printf(" Nova infestacao:                 %.1f.%n", defensivo.reduzirPraga(talhao.getNivelInfestacao()));
+            System.out.println("--------------------------------------------------------");
+            System.out.printf(" Custo insumos:                R$ %.2f.%n", defensivo.custoInsumos(talhao.getAreaHectares()));
+            System.out.printf(" Taxa ambiental (%s):          R$ %.2f.%n", defensivo.tabelaTaxas(), defensivo.custoTaxas(defensivo.custoInsumos(talhao.getAreaHectares())));
+            System.out.printf(" CUSTO TOTAL:                  R$ %.2f.%n", defensivo.custoTotal(defensivo.custoInsumos(talhao.getAreaHectares())));
+            System.out.printf(" Estoque restante Prouto:       %.2f L.%n", defensivo.getEstoqueLitros());
+            System.out.println("=======================================================");
         }
     }
 }

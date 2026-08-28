@@ -71,27 +71,67 @@ public class Defensivo{
         return this.porcentagemEficacia;
     }
 
+    public double litrosTotais(double area){
+        double calculoLitrosTotais = this.dosagemPorHectare * area;
+        return calculoLitrosTotais;
+    }
+
     public double aplicar(double area){
         double calculoDosagem = dosagemPorHectare * area;
 
-        if(estoqueLitros > calculoDosagem){
-            this.estoqueLitros -= calculoDosagem;
+        if(estoqueLitros >= calculoDosagem){
             System.out.println("Aplicacao feita com sucesso!");
+            return this.estoqueLitros -= calculoDosagem;
         } else{
             System.out.println("Nao foi possivel fazer a aplicacao por falta de estoque!");
+            return 0;
         }
-        return 0;
     }
 
-    public double tabelaOperacional(double custoTotal){
+    public String tabelaTaxas(){
         String tabelaOperacionalFormatada = this.tipoPragaAlvo.toLowerCase();
 
         if(tabelaOperacionalFormatada.equals("classe iv")){
-            return custoTotal * 0.05;
+            return "5%";
         } else if(tabelaOperacionalFormatada.equals("classe iii")){
-            return custoTotal * 0.08;
+            return "8%";
         } else{
-            return custoTotal * 0.12;
+            return "12%";
         }
+    }
+
+    public double custoTaxas(double custoInsumos){
+        String tabelaOperacionalFormatada = this.tipoPragaAlvo.toLowerCase();
+
+        if(tabelaOperacionalFormatada.equals("classe iv")){
+            return custoInsumos * 0.05;
+        } else if(tabelaOperacionalFormatada.equals("classe iii")){
+            return custoInsumos * 0.08;
+        } else{
+            return custoInsumos * 0.12;
+        }
+    }
+
+    public double custoTotal(double custoInsumos){
+        String tabelaOperacionalFormatada = this.tipoPragaAlvo.toLowerCase();
+
+        if(tabelaOperacionalFormatada.equals("classe iv")){
+            return custoInsumos * 1.05;
+        } else if(tabelaOperacionalFormatada.equals("classe iii")){
+            return custoInsumos * 1.08;
+        } else{
+            return custoInsumos * 1.12;
+        }
+    }
+
+    public double reduzirPraga(double nivel){
+        double calculoReducao = nivel - (nivel * (this.porcentagemEficacia / 100));
+        return calculoReducao;
+    }
+
+    public double custoInsumos(double area){
+        double calculoDosagem = this.dosagemPorHectare * area;
+        double custos = this.precoPorLitro * calculoDosagem;
+        return custos;
     }
 }

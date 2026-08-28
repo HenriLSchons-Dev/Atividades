@@ -51,50 +51,86 @@ public class Tanque{
         return this.estoqueAtualLitros;
     }
 
-    public void abastecerPorValor(double valor){
+    public double abastecerPorValor(double valor){
         double calculoPorValor = valor / this.precoPorLitro;
-        double calculoTanque = this.capacidadeTanqueLitros - this.estoqueAtualLitros;
 
-        if(calculoPorValor <= calculoTanque){
-            this.estoqueAtualLitros += calculoPorValor;
-            System.out.println("Tanque abastecido!");
+        if(calculoPorValor <= this.estoqueAtualLitros){
+            this.estoqueAtualLitros -= calculoPorValor;
+            return calculoPorValor;
         } else{
-            double ultrapassaLitros = calculoTanque - calculoPorValor;
-            System.out.printf("O valor inserido ultrapassa a capacidade informada de litros do tanque em %.2f.%n ", ultrapassaLitros);
+            return 0;
         }
     }
 
-    public void abastecerPorLitro(double litros){
-        double calculoTanque = this.capacidadeTanqueLitros - this.estoqueAtualLitros;
+    public double abastecerPorLitro(double litros){
+        double calculoPorLitro = litros * this.precoPorLitro;
 
-        if(calculoTanque != 0){
-            double valorPagar = litros * this.precoPorLitro;
-            System.out.printf("O tanque tem %.2f Litros livres.%n", calculoTanque);
-            System.out.printf("O valor a pagar será de R$ %.2f.%n", valorPagar);
+        if(litros <= this.estoqueAtualLitros){
+            this.estoqueAtualLitros -= litros;
+            return calculoPorLitro;
         } else{
-            System.out.println("O tanque está cheio!");
+            return 0;
         }
     }
 
-    public  double tabelaTributaria(){
+    public double calcularTroco(double pago, double total){
+        if(pago >= total){
+            return pago - total;
+        } else{
+            return 0;
+        }
+    }
+
+    public String valorTabela(){
         String tipoCombustivelFormatado = this.tipoCombustivel.toLowerCase();
 
         if(tipoCombustivelFormatado.equals("diesel")){
-            return precoPorLitro * 0.12;
+            return "12%";
 
         } else if(tipoCombustivelFormatado.equals("etanol")){
-            return precoPorLitro * 0.18;
+            return "18%";
 
         } else if(tipoCombustivelFormatado.equals("gasolina comum")){
-            return precoPorLitro * 0.27;
+            return "27%";
 
-        } else if(tipoCombustivelFormatado.equals("gasolina aditivada")){
-            return precoPorLitro * 0.29;
-            
         } else{
-            System.out.println("Erro: Digite o tipo correto");
+            return "29%";
         }
+    }
 
-        return 0;
+    public double taxasTabela(double subtotal){
+        String tipoCombustivelFormatado = this.tipoCombustivel.toLowerCase();
+
+        if(tipoCombustivelFormatado.equals("diesel")){
+            return subtotal * 0.12;
+
+        } else if(tipoCombustivelFormatado.equals("etanol")){
+            return subtotal * 0.18;
+
+        } else if(tipoCombustivelFormatado.equals("gasolina comum")){
+            return subtotal * 0.27;
+
+        } else{
+            return subtotal * 0.29;
+            
+        }
+    }
+
+    public  double calculoTabelaTributaria(double subtotal){
+        String tipoCombustivelFormatado = this.tipoCombustivel.toLowerCase();
+
+        if(tipoCombustivelFormatado.equals("diesel")){
+            return subtotal * 1.12;
+
+        } else if(tipoCombustivelFormatado.equals("etanol")){
+            return subtotal * 1.18;
+
+        } else if(tipoCombustivelFormatado.equals("gasolina comum")){
+            return subtotal * 1.27;
+
+        } else{
+            return subtotal * 1.29;
+            
+        }
     }
 }
