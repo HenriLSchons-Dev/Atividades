@@ -6,9 +6,9 @@ public class Tanque{
 
     public Tanque(String tipoCombustivel, double precoPorLitro, double capacidadeTanqueLitros, double estoqueAtualLitros){
         this.tipoCombustivel = tipoCombustivel;
-        this.precoPorLitro = precoPorLitro;
+        setPrecoPorLitro(precoPorLitro);
         this.capacidadeTanqueLitros = capacidadeTanqueLitros;
-        this.estoqueAtualLitros = estoqueAtualLitros;
+        setEstoqueAtualLitros(estoqueAtualLitros);
     }
 
     public void setTipoCombustivel(String tipoCombustivel){

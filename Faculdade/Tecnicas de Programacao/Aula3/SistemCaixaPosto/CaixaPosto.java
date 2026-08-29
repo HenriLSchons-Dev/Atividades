@@ -52,9 +52,10 @@ public class CaixaPosto{
                     double valor = leia.nextDouble();
                     leia.nextLine();
 
+                    double litrosAbastecidos = tanque.abastecerPorValor(valor);
 
-                    if (tanque.abastecerPorValor(valor) > 0) {
-                        double subtotal = tanque.abastecerPorValor(valor) * precoPorLitro;
+                    if (litrosAbastecidos > 0) {
+                        double subtotal = litrosAbastecidos * precoPorLitro;
                         double total = tanque.calculoTabelaTributaria(subtotal);
                         double troco = tanque.calcularTroco(valor, total);
 
@@ -63,7 +64,7 @@ public class CaixaPosto{
                         System.out.println("=================================================");
                         System.out.printf(" Combustivel:                     %s.%n",tanque.getTipoCombustivel());
                         System.out.printf(" Preco por litro:                 R$ %.2f.%n",tanque.getPrecoPorLitro());
-                        System.out.printf(" Qnt. Abastecida:                 %.2f Litros.%n",tanque.abastecerPorValor(valor));
+                        System.out.printf(" Qnt. Abastecida:                 %.2f Litros.%n",litrosAbastecidos);
                         System.out.println("-------------------------------------------------");
                         System.out.printf(" SUBTOTAL:                        R$ %.2f.%n",subtotal);
                         System.out.printf(" IMPOSTOS RETIDOS (%s):          R$ %.2f.%n",tanque.valorTabela(), tanque.taxasTabela(subtotal));
@@ -83,12 +84,14 @@ public class CaixaPosto{
                     double litros = leia.nextDouble();
                     leia.nextLine();
 
-                    if(tanque.abastecerPorLitro(litros) > 0){
-                        System.out.printf("O valor a ser pago é de R$ %.2f.%n", tanque.calculoTabelaTributaria(tanque.abastecerPorLitro(litros)));
+                    double valorAPagar = tanque.abastecerPorLitro(litros);
+
+                    if(valorAPagar > 0){
+                        System.out.printf("O valor a ser pago é de R$ %.2f.%n", tanque.calculoTabelaTributaria(valorAPagar));
                         System.out.println("Informe a quantidade paga pelo cliente: ");
                         double pago = leia.nextDouble();
                         leia.nextLine();
-                        double total = tanque.calculoTabelaTributaria(tanque.abastecerPorLitro(litros));
+                        double total = tanque.calculoTabelaTributaria(valorAPagar);
                         double troco = tanque.calcularTroco(pago, total);
 
                         System.out.println("=================================================");
@@ -98,8 +101,8 @@ public class CaixaPosto{
                         System.out.printf(" Preco por litro:             R$ %.2f.%n", tanque.getPrecoPorLitro());
                         System.out.printf(" Qnt. Abastecida:                %.2f Litros.%n", litros);
                         System.out.println("-------------------------------------------------");
-                        System.out.printf(" SUBTOTAL:                        R$ %.2f.%n", tanque.abastecerPorLitro(litros));
-                        System.out.printf(" IMPOSTOS RETIDOS (%s):           R$ %.2f.%n", tanque.valorTabela(), tanque.taxasTabela(tanque.abastecerPorLitro(litros)));
+                        System.out.printf(" SUBTOTAL:                        R$ %.2f.%n", valorAPagar);
+                        System.out.printf(" IMPOSTOS RETIDOS (%s):           R$ %.2f.%n", tanque.valorTabela(), tanque.taxasTabela(valorAPagar));
                         System.out.printf(" TOTAL A PAGAR:                   R$ %.2f.%n", total);
                         System.out.printf(" VALOR PAGO (dinheiro):           R$ %.2f.%n", pago);
                         System.out.printf(" TROCO:                           R$ %.2f.%n", troco);    
