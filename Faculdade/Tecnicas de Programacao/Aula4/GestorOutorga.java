@@ -50,13 +50,13 @@ public class GestorOutorga {
         System.out.println("==================================================");
         System.out.printf("Ponto de Captacao ID: %d (%s)%n", ponto.getIdPonto(), ponto.getNomeRio());
         System.out.printf("Cultura Irrigada       : %s%n", ponto.getCulturaIrrigada());
-        System.out.printf("Limite Autorizado      : %.2f m³%n", ponto.getLimiteOutorga());
-        System.out.printf("Volume Retirado Hoje   : %.2f m³%n", ponto.getvolumeCaptacaoRio());
+        System.out.printf("Limite Autorizado      : %.2f m3%n", ponto.getLimiteOutorga());
+        System.out.printf("Volume Retirado Hoje   : %.2f m3%n", ponto.getvolumeCaptacaoRio());
         System.out.printf("Status Operacional     : %s%n", ponto.getStatus());
         System.out.println(" ");
         System.out.printf("Custo Base da Agua     : R$ %.2f%n", custoBase);
         System.out.printf("Sobretaxa Ambiental    : R$ %.2f%n", sobretaxa);
-        System.out.printf("Volume Excedente       : %.2f m³%n", excedente);
+        System.out.printf("Volume Excedente       : %.2f m3%n", excedente);
         System.out.printf("TOTAL A PAGAR          : R$ %.2f%n", total);
         System.out.println("==================================================");
     }

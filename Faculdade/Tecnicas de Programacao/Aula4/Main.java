@@ -50,13 +50,14 @@ public class Main {
             System.out.println("========================================================");
 
             int opcao;
+
+            
             do { 
                 System.out.println("Sera captado mais agua?");
                 System.out.println("1 - sim");
                 System.out.println("2 - nao");
                 opcao = leia.nextInt();
                 leia.nextLine();
-
                 System.out.println("Informe o volume a ser captado agora, em metros cubicos: ");
                 volumeM3 = leia.nextDouble();
                 leia.nextLine();
