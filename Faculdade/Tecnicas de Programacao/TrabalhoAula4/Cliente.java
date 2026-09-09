@@ -5,6 +5,7 @@ public class Cliente {
     private String telefone;
     private String cadastro;
     private boolean ativo;
+    private Endereco endereco;
 
     public Cliente(String nome, String email, String telefone, String cadastro, boolean ativo) {
 
@@ -62,6 +63,16 @@ public class Cliente {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public Endereco getEndereco() {
+
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+
+        this.endereco = endereco;
     }
 
 }
