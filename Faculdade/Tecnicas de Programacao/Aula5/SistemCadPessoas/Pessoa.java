@@ -1,4 +1,4 @@
-public class Pessoas {
+public class Pessoa {
 
     private int id;
     private String nome;
@@ -6,14 +6,14 @@ public class Pessoas {
     private String email;
     private String telefone;
 
-    public Pessoas() {
+    public Pessoa() {
     }
 
-    public Pessoas(String nome) {
+    public Pessoa(String nome) {
         setNome(nome);
     }
 
-    public Pessoas(String cpf, String email, int id, String nome, String telefone) {
+    public Pessoa(String cpf, String email, int id, String nome, String telefone) {
         setId(id);
         setNome(nome);
         setCpf(cpf);
@@ -133,7 +133,7 @@ public class Pessoas {
     }
 
     public void setTelefone(String telefone) {
-        if (telefone != null && telefone.matches("\\d{10,11}")) {
+        if (telefone != null && telefone.matches("\\d{11}")) {
             this.telefone = telefone;
         } else {
             System.out.println("Telefone inválido");
@@ -144,8 +144,6 @@ public class Pessoas {
         System.out.println("ID: " + this.id);
         System.out.println("Nome: " + this.nome);
         System.out.println("CPF: " + this.cpf);
-        System.out.println("E-mail: " + this.email);
-        System.out.println("Telefone: " + this.telefone);
     }
 
     public void exibirDados(boolean mostrarContato) {
