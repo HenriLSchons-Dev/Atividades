@@ -33,8 +33,12 @@ public class Organizador{
         this.especialidade = especialidade;
     }
 
-    public void assumirEvento(Evento evento){
-
+    public void assumirEvento(Evento meuEvento, Espaco meuEspaco){
+        System.out.println("Nome do organizador: " + this.nome);
+        System.out.println("Codigo: " + this.codigo);
+        System.out.printf("Nome do evento: %s %n", meuEvento.getNome());
+        System.out.printf("Data: %s %n", meuEvento.getData());
+        System.out.printf("Espaço onde sera realizado na %s, que fica localizada %s %n", meuEspaco.getNome(), meuEspaco.getEndereco());
     }
 
     public void exibirDados(){

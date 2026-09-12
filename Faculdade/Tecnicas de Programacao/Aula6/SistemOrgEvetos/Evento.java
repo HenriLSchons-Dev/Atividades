@@ -44,16 +44,18 @@ public class Evento{
     }
 
     public void exibirDados(){
-        System.out.println(".()");
-        System.out.println(".()");
-        System.out.println(".()");
-        System.out.println(".()");
-        System.out.println(".()");
+        System.out.println("Nome: " + this.nome);
+        System.out.println("Data: " + this.data);
+        System.out.println("Participantes: " + this.qntParticipantes);
+        System.out.println("Valor individual: " + this.valor);
     }
 
-    public void verificarCapacidade(){
-        if(qntParticipantes <= 0){
-            System.out.println("");
+    public void verificarCapacidade(Espaco capacidade){
+        if(qntParticipantes <= capacidade.getCapacidade()){
+            System.out.println("Capacidade adequada para eventos");
+        } else {
+            System.out.println("Capacidade inadequada!");
+            System.out.printf("A capacidaded maxima é de %d pessoas.%n", capacidade.getCapacidade());
         }
     }
     
