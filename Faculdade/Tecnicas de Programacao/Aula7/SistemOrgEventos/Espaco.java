@@ -1,10 +1,14 @@
-public class Espaco{
+public class Espaco {
     private String nome;
     private String endereco;
     private int capacidade;
     private String tipo;
 
-    public Espaco(String nome, String endereco, int capacidade, String tipo){
+    public Espaco(String nome, String endereco, int capacidade, String tipo) {
+        if (capacidade <= 0) {
+            throw new IllegalArgumentException("A capacidade deve ser maior que zero.");
+        }
+
         this.nome = nome;
         this.endereco = endereco;
         this.capacidade = capacidade;
@@ -43,7 +47,7 @@ public class Espaco{
         this.tipo = tipo;
     }
 
-    public void exibirDados(){
+    public void exibirDados() {
         System.out.println("Nome: " + this.nome);
         System.out.println("Endereco: " + this.endereco);
         System.out.println("Capacidade: " + this.capacidade);

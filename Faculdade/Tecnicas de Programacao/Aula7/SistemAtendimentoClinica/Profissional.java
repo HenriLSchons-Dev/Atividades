@@ -18,7 +18,11 @@ public class Profissional{
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if(nome == null|| nome.trim().isEmpty() ){
+            System.out.println("Nome invalido!");
+        } else {
+            this.nome = nome;
+        }
     }
 
     public String getRegistro() {
@@ -26,7 +30,11 @@ public class Profissional{
     }
 
     public void setRegistro(String registro) {
-        this.registro = registro;
+        if(registro == null || registro.trim().isEmpty()){
+            System.out.println("Registro invalido!");
+        } else {
+            this.registro = registro;
+        }
     }
 
     public String getEspecialidade() {
@@ -34,7 +42,11 @@ public class Profissional{
     }
 
     public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
+        if(especialidade == null|| especialidade.trim().isEmpty()){
+            System.out.println("Especialidade invalida!");
+        } else {
+            this.especialidade = especialidade.toLowerCase().trim();
+        }
     }
 
     public void exibirDados(){

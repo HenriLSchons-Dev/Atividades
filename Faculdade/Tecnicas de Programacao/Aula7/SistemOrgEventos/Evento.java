@@ -1,10 +1,18 @@
-public class Evento{
+public class Evento {
     private String nome;
     private String data;
     private int qntParticipantes;
     private double valor;
 
-    public Evento(String nome, String data, int qntParticipantes, double valor){
+    public Evento(String nome, String data, int qntParticipantes, double valor) {
+        if (qntParticipantes < 0) {
+            throw new IllegalArgumentException("A quantidade de participantes não pode ser negativa.");
+        }
+
+        if (valor < 0) {
+            throw new IllegalArgumentException("O valor não pode ser negativo.");
+        }
+
         this.nome = nome;
         this.data = data;
         this.qntParticipantes = qntParticipantes;
@@ -43,20 +51,20 @@ public class Evento{
         this.valor = valor;
     }
 
-    public void exibirDados(){
+    public void exibirDados() {
         System.out.println("Nome: " + this.nome);
         System.out.println("Data: " + this.data);
         System.out.println("Participantes: " + this.qntParticipantes);
         System.out.println("Valor individual: " + this.valor);
     }
 
-    public void verificarCapacidade(Espaco capacidade){
-        if(qntParticipantes <= capacidade.getCapacidade()){
+    public void verificarCapacidade(Espaco capacidade) {
+        if (qntParticipantes <= capacidade.getCapacidade()) {
             System.out.println("Capacidade adequada para eventos");
         } else {
             System.out.println("Capacidade inadequada!");
-            System.out.printf("A capacidaded maxima é de %d pessoas.%n", capacidade.getCapacidade());
+            System.out.printf("A capacidade maxima é de %d pessoas.%n",
+                    capacidade.getCapacidade());
         }
     }
-    
 }
